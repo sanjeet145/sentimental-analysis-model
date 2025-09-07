@@ -56,13 +56,14 @@ def home():
     return jsonify({"message": "App with sentimental model is running!", "columns": ["text"]})
 
 def validateuser(jwttoken):
-        try:
-            decoded = jwt.decode(jwttoken, os.getenv("SECRET_KEY"), algorithms=["HS256"])
-            return decoded
-        except jwt.ExpiredSignatureError:
-            return None
-        except jwt.InvalidTokenError:
-            return None
+    try:
+        decoded = jwt.decode(jwttoken, os.getenv("SECRET_KEY"), algorithms=["HS256"])
+        print(decoded)
+        return decoded
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None
 
 @app.route("/predict", methods=["POST"])
 def sentiment_predict():
