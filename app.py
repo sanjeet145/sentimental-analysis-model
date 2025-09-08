@@ -58,7 +58,7 @@ def home():
 def validateuser(jwttoken):
     try:
         decoded = jwt.decode(jwttoken, os.getenv("SECRET_KEY"), algorithms=["HS256"])
-        print(decoded)
+        # print(decoded)
         return decoded
     except jwt.ExpiredSignatureError:
         return None
